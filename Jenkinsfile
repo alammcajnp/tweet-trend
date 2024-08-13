@@ -1,5 +1,3 @@
-def registry = 'https://valaxy786.jfrog.io'
-
 pipeline {
     agent {
         node {
@@ -27,10 +25,11 @@ pipeline {
         //     }
         // }
 
-            
+            def registry = 'https://valaxy786.jfrog.io'
             stage("Jar Publish") {
             steps {
                 script {
+                        echo '<--------------- Jar Publish Started --------------->'
                          def server = Artifactory.newServer url:registry+"/artifactory" ,  credentialsId:"artifact-cred"
                          def properties = "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}";
                          def uploadSpec = """{
@@ -46,9 +45,13 @@ pipeline {
                          }"""
                          def buildInfo = server.upload(uploadSpec)
                          buildInfo.env.collect()
-                         server.publishBuildInfo(buildInfo)                
-                    }
+                         server.publishBuildInfo(buildInfo)
+                         echo '<--------------- Jar Publish Ended --------------->'  
+                
+                }
             }   
         }  
+
+
     }
 }
