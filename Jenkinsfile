@@ -1,4 +1,4 @@
-def registry = 'https://valaxy786.jfrog.io'
+def registry = 'https://valaxy786.jfrog.io/'
 
 pipeline {
     agent {
@@ -46,12 +46,9 @@ pipeline {
                          }"""
                          def buildInfo = server.upload(uploadSpec)
                          buildInfo.env.collect()
-                         server.publishBuildInfo(buildInfo)
-                
-                }
+                         server.publishBuildInfo(buildInfo)                
+                    }
             }   
         }  
-
-
     }
 }
