@@ -14,7 +14,7 @@ pipeline {
                 sh 'mvn clean deploy'
             }
         }
-        stage("SOnarQube Analysis") {
+        stage("SonarQube Analysis") {
             environment {
                  scannerHome= tool 'valaxy-sonar-scanner'
             }
@@ -23,7 +23,6 @@ pipeline {
                     sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
-
         }
     }
 }
