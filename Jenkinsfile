@@ -14,15 +14,15 @@ pipeline {
                 sh 'mvn clean deploy'
             }
         }
-        stage("SonarQube Analysis") {
-            environment {
-                 scannerHome= tool 'valaxy-sonar-scanner'
-            }
-            steps {
-                withSonarQubeEnv('valaxy-soanrqube-server'){
-                    sh "${scannerHome}/bin/sonar-scanner"
-                }
-            }
-        }
+        // stage("SonarQube Analysis") {
+        //     environment {
+        //          scannerHome= tool 'valaxy-sonar-scanner'
+        //     }
+        //     steps {
+        //         withSonarQubeEnv('valaxy-soanrqube-server'){
+        //             sh "${scannerHome}/bin/sonar-scanner"
+        //         }
+        //     }
+        // }
     }
 }
